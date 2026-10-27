@@ -20,5 +20,20 @@ library(palmerpenguins)
 How many peguins in the dataset for each species
 
 ```{r}
-a
+
+bill_summary <- penguins |>
+  group_by(species) |>
+  summarise(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
+
+bill_summary
+```
+
+```{r}
+
+ggplot(bill_summary, aes(x = species, y = mean_bill_length, fill = species)) +
+  geom_col() +
+  labs(x = "Species", y = "Mean bill length",
+       title = "Average Bill Length by Species")
+
+
 ```
